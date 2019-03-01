@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<record id="view_form_partner_citizenship" model="ir.ui.view">
+    <field name="name">partner citizenship</field>
+    <field name="model">res.partner</field>
+    <field name="inherit_id" ref="base.view_partner_form"/>
+    <field name="arch" type="xml">
+        <data>
+            <xpath expr="//field[@name='country_id']" position="after">
+                <field name="main_citizenship_id"  placeholder="Citizenship"
+                       attrs="{'required': [('second_citizenship_id', '!=', False)],'invisible': [('is_company', '=', True)]}"/>
+                <field name="second_citizenship_id" placeholder="Second Citizenship"
+                       attrs="{'invisible': [('main_citizenship_id', '=', False),
+                       ('is_company', '=', True)]}"/>
+            </xpath>
+        </data>
+    </field>
+</record>
+
+</odoo>
